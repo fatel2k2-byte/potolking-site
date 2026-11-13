@@ -170,7 +170,7 @@ footer{padding:30px 0;border-top:1px solid #161410;font-size:12px;color:#5f594d;
     <div class="slogan">Потолки любой сложности</div>
     <p class="lead">Световые линии, парящие и теневые потолки, ниши под шторы с подсветкой. Делаем сами — от замера до последней лампы.</p>
     <div class="cta">
-      <a class="btn btn-gold" href="tel:+79911291862">Получить расчёт</a>
+      <a class="btn btn-gold" href="#calc">Получить расчёт</a>
       <a class="btn btn-line" href="#works">Смотреть работы</a>
     </div>
     <div class="facts">
@@ -290,6 +290,42 @@ function calc(){
 const lb=$('lb');
 document.querySelectorAll('.gal a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();lb.querySelector('img').src=a.href;lb.classList.add('on')}));
 lb.addEventListener('click',()=>lb.classList.remove('on'));
+</script>
+<div id="cm" role="dialog" aria-modal="true" aria-label="Связаться с нами"><div class="cmb">
+<button class="cmx" aria-label="Закрыть">×</button>
+<div class="cmk">Звоните или пишите</div>
+<a class="cmn" href="tel:+79911291862">+7 991 129-18-62</a>
+<button class="cmc btn btn-gold" type="button">Скопировать номер</button>
+<a class="cmv" href="https://vk.me/potolkingpro_pushkino" target="_blank" rel="noopener">Написать в ВКонтакте</a>
+</div></div>
+<style>
+#cm{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
+#cm.on{display:flex}
+#cm .cmb{position:relative;background:#111;color:#E8E0CC;border:1px solid #D4AF37;border-radius:14px;padding:36px 28px 26px;width:100%;max-width:400px;text-align:center}
+#cm .cmx{position:absolute;top:8px;right:12px;background:none;border:0;color:#E8E0CC;font-size:28px;cursor:pointer;line-height:1}
+#cm .cmk{font-size:13px;letter-spacing:.15em;text-transform:uppercase;opacity:.7;margin-bottom:10px}
+#cm .cmn{display:block;font-size:28px;font-weight:700;color:#D4AF37;text-decoration:none;margin-bottom:20px;white-space:nowrap}
+#cm .cmc{width:100%;margin-bottom:12px;cursor:pointer;border:0;font:inherit}
+#cm .cmv{display:block;padding:13px;border:1px solid #D4AF37;border-radius:10px;color:#E8E0CC;text-decoration:none;font-weight:600}
+#cm .cmv:hover{background:rgba(255,255,255,.06)}
+#cm .cmh{margin-top:14px;font-size:13px;opacity:.6}
+</style>
+<script>
+(function(){
+  var desk=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var cm=document.getElementById('cm'), cc=cm.querySelector('.cmc');
+  function close(){cm.classList.remove('on')}
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+    if(a.closest('#cm'))return;
+    a.addEventListener('click',function(e){if(!desk)return;e.preventDefault();cc.textContent='Скопировать номер';cm.classList.add('on')});
+  });
+  cm.addEventListener('click',function(e){if(e.target===cm||e.target.classList.contains('cmx'))close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+  cc.addEventListener('click',function(){
+    var t='+79911291862';
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){cc.textContent='Номер скопирован ✓'},function(){cc.textContent='+7 991 129-18-62'});
+  });
+})();
 </script>
 </body>
 </html>
